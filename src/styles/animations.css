@@ -1,0 +1,123 @@
+/* ==========================================================================
+   MESHE COSMETICS — MICRO-ANIMATIONS & INTERACTION STYLES
+   ========================================================================== */
+
+/* Ambient Glow Orbs for Luxurious Depth */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  transition: opacity 0.8s ease;
+}
+
+.ambient-blush {
+  background: radial-gradient(circle, rgba(235, 185, 175, 0.4) 0%, rgba(250, 247, 242, 0) 70%);
+}
+
+.ambient-wine {
+  background: radial-gradient(circle, rgba(115, 26, 41, 0.35) 0%, rgba(36, 7, 13, 0) 70%);
+}
+
+.ambient-gold {
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.25) 0%, rgba(250, 247, 242, 0) 70%);
+}
+
+/* Subtle Floating Animation for Hero & Accent Elements */
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+}
+
+.animate-soft-float {
+  animation: softFloat 6s ease-in-out infinite;
+}
+
+/* Pulse Glow for Special Badges & Offers */
+@keyframes subtlePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(115, 26, 41, 0.2);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px 4px rgba(115, 26, 41, 0.15);
+  }
+}
+
+.pulse-badge {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Swatch Interactive Rings */
+.swatch-interactive {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.swatch-interactive::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.swatch-interactive:hover::after,
+.swatch-interactive.active::after {
+  border-color: currentColor;
+  transform: scale(1.1);
+}
+
+/* Magnetic Button Feel */
+.magnetic-btn {
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Image Reveal Mask */
+.reveal-mask {
+  overflow: hidden;
+  position: relative;
+}
+
+.reveal-mask img {
+  will-change: transform;
+}
+
+/* Slide in from right for drawer */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer-enter {
+  animation: slideInRight 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Fade In Overlay */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.overlay-enter {
+  animation: fadeInOverlay 0.3s ease forwards;
+}
