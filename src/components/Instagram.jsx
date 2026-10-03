@@ -1,70 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { ArrowUpRight, Heart } from 'lucide-react';
 import { InstagramIcon } from './Icons';
 import { BRAND } from '../config/siteConfig';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Instagram() {
-  const sectionRef = useRef(null);
-
   const posts = [
     {
       id: 1,
       image: '/images/collection-lifestyle.jpg',
       tag: 'Everyday Essentials',
-      caption: 'In good company. The complete 5-shade lineup out in the wild. ☕✨',
+      caption: 'In good company. The complete 5-shade healing lineup out in the wild. ☕✨',
       likes: '1.4k',
     },
     {
       id: 2,
       image: '/images/editorial-arm.jpg',
       tag: 'Real Swatches',
-      caption: 'One swipe, honest payoff. From velvet nude to sultry ruby.',
+      caption: 'Honest swatches in daylight. From Lost Love to Nevermine.',
       likes: '2.1k',
     },
     {
       id: 3,
       image: '/images/meshe_swatches_silk.jpg',
-      tag: 'Texture Study',
-      caption: 'Velvet satin-matte on silk. Never dry, always breathing.',
+      tag: 'Comfort With Care',
+      caption: 'Soft comfort-matte on silk. Shea Butter, Jojoba & Vitamin E.',
       likes: '3.8k',
     },
     {
       id: 4,
       image: '/images/collection.png',
-      tag: 'Unboxed Vault',
-      caption: 'All five shades in their collector boxes. The signature set.',
+      tag: 'Healing Set',
+      caption: 'All five shades in their keepsake box. The healing collection.',
       likes: '1.9k',
     },
   ];
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.social-card', {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 40,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       id="social"
       className="section"
       style={{
@@ -76,10 +48,10 @@ export default function Instagram() {
         
         {/* Section Header */}
         <div className="section-header">
-          <span className="section-tag">Community & Aesthetic</span>
+          <span className="section-tag">Community & Healing</span>
           <h2 className="section-title">See MESHE in the real world.</h2>
           <p className="section-subtitle">
-            Tagged by our community. Real smiles, real moments, and unfiltered beauty.
+            Tagged by our community. Real smiles, real stories, and unfiltered moments of healing.
           </p>
         </div>
 
@@ -89,7 +61,7 @@ export default function Instagram() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '1.75rem',
-            marginBottom: '3.5rem',
+            marginBottom: '3rem',
           }}
         >
           {posts.map((post) => (
@@ -119,7 +91,7 @@ export default function Instagram() {
                   height: '100%',
                   objectFit: 'cover',
                   display: 'block',
-                  transition: 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+                  transition: 'transform 0.5s ease',
                 }}
               />
 
@@ -130,7 +102,7 @@ export default function Instagram() {
                   top: '1rem',
                   left: '1rem',
                   zIndex: 2,
-                  backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
                   backdropFilter: 'blur(8px)',
                   padding: '0.3rem 0.75rem',
                   borderRadius: '9999px',
@@ -138,27 +110,27 @@ export default function Instagram() {
                   fontSize: '0.68rem',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
-                  color: 'var(--accent-wine)',
+                  color: 'var(--accent-brown)',
                   textTransform: 'uppercase',
                 }}
               >
                 {post.tag}
               </div>
 
-              {/* Hover Dark Overlay with Instagram Details */}
+              {/* Hover Dark Overlay with Warm Earth Tone */}
               <div
                 className="social-card-overlay"
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  backgroundColor: 'rgba(36, 7, 13, 0.72)',
+                  backgroundColor: 'rgba(51, 32, 28, 0.76)',
                   backdropFilter: 'blur(4px)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   padding: '1.75rem',
                   opacity: 0,
-                  transition: 'opacity 0.4s ease',
+                  transition: 'opacity 0.35s ease',
                   zIndex: 3,
                 }}
               >
@@ -183,7 +155,7 @@ export default function Instagram() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '0.4rem',
-                      color: 'var(--accent-gold-light)',
+                      color: 'var(--pastel-peach)',
                       fontSize: '0.78rem',
                       fontWeight: 600,
                     }}
@@ -212,7 +184,7 @@ export default function Instagram() {
               gap: '0.65rem',
             }}
           >
-            <InstagramIcon size={18} color="var(--accent-wine)" />
+            <InstagramIcon size={18} color="var(--accent-brown)" />
             <span>Follow {BRAND.instagramHandle}</span>
             <ArrowUpRight size={16} />
           </a>
@@ -222,7 +194,7 @@ export default function Instagram() {
 
       <style>{`
         .social-card:hover .social-card-img {
-          transform: scale(1.08);
+          transform: scale(1.05);
         }
         .social-card:hover .social-card-overlay {
           opacity: 1 !important;

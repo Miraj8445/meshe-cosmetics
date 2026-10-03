@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ShoppingBag, Menu, X, ArrowRight } from 'lucide-react';
-import { BRAND, ORDER_URL } from '../config/siteConfig';
+import { BRAND } from '../config/siteConfig';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -17,27 +17,27 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
 
     // GSAP ScrollTrigger for shrinking & styling navbar on scroll
     const trigger = ScrollTrigger.create({
-      start: 'top -50',
+      start: 'top -40',
       onEnter: () => {
         gsap.to(nav, {
-          backgroundColor: 'rgba(250, 247, 242, 0.92)',
+          backgroundColor: 'rgba(247, 239, 232, 0.94)',
           backdropFilter: 'blur(16px)',
-          boxShadow: '0 8px 30px rgba(45, 20, 15, 0.08)',
-          borderBottomColor: 'rgba(115, 26, 41, 0.1)',
-          paddingTop: '0.85rem',
-          paddingBottom: '0.85rem',
+          boxShadow: '0 6px 24px rgba(107, 74, 64, 0.08)',
+          borderBottomColor: 'rgba(107, 74, 64, 0.12)',
+          paddingTop: '0.8rem',
+          paddingBottom: '0.8rem',
           duration: 0.35,
           ease: 'power2.out',
         });
       },
       onLeaveBack: () => {
         gsap.to(nav, {
-          backgroundColor: 'rgba(250, 247, 242, 0)',
+          backgroundColor: 'rgba(247, 239, 232, 0)',
           backdropFilter: 'blur(0px)',
           boxShadow: '0 0 0 rgba(0,0,0,0)',
-          borderBottomColor: 'rgba(115, 26, 41, 0)',
-          paddingTop: '1.4rem',
-          paddingBottom: '1.4rem',
+          borderBottomColor: 'rgba(107, 74, 64, 0)',
+          paddingTop: '1.25rem',
+          paddingBottom: '1.25rem',
           duration: 0.35,
           ease: 'power2.out',
         });
@@ -58,12 +58,12 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
       gsap.fromTo(
         mobileMenuRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }
       );
       gsap.fromTo(
         '.mobile-nav-item',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.08, duration: 0.4, delay: 0.15, ease: 'power2.out' }
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, stagger: 0.06, duration: 0.35, delay: 0.1, ease: 'power2.out' }
       );
     } else {
       document.body.style.overflow = '';
@@ -94,8 +94,8 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
           left: 0,
           right: 0,
           zIndex: 1000,
-          paddingTop: '1.4rem',
-          paddingBottom: '1.4rem',
+          paddingTop: '1.25rem',
+          paddingBottom: '1.25rem',
           transition: 'border-color 0.3s ease',
           borderBottom: '1px solid transparent',
         }}
@@ -117,8 +117,8 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
               src="/images/logo.png"
               alt="MESHE Logo"
               style={{
-                width: '42px',
-                height: '42px',
+                width: '40px',
+                height: '40px',
                 objectFit: 'contain',
               }}
             />
@@ -126,11 +126,11 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.65rem',
+                  fontSize: '1.6rem',
                   fontWeight: 600,
-                  letterSpacing: '0.18em',
+                  letterSpacing: '0.14em',
                   lineHeight: 1,
-                  color: 'var(--accent-wine)',
+                  color: 'var(--accent-brown)',
                 }}
               >
                 MESHE
@@ -141,8 +141,8 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                   fontSize: '0.62rem',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
-                  color: 'var(--text-muted)',
-                  marginTop: '2px',
+                  color: 'var(--accent-soft-brown)',
+                  marginTop: '3px',
                 }}
               >
                 Made For Every Smile
@@ -155,7 +155,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '2.5rem',
+              gap: '2.25rem',
             }}
             className="desktop-nav"
           >
@@ -170,7 +170,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.88rem',
                   fontWeight: 500,
-                  letterSpacing: '0.06em',
+                  letterSpacing: '0.04em',
                   transition: 'color var(--transition-fast)',
                   position: 'relative',
                   padding: '0.25rem 0',
@@ -193,25 +193,25 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '44px',
-                height: '44px',
+                width: '42px',
+                height: '42px',
                 borderRadius: '50%',
-                background: 'rgba(115, 26, 41, 0.05)',
-                border: '1px solid var(--border-light)',
-                color: 'var(--accent-wine)',
+                background: 'rgba(232, 185, 165, 0.25)',
+                border: '1px solid rgba(107, 74, 64, 0.15)',
+                color: 'var(--accent-brown)',
                 cursor: 'pointer',
                 transition: 'all var(--transition-fast)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.06)';
-                e.currentTarget.style.backgroundColor = 'rgba(115, 26, 41, 0.12)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.backgroundColor = 'rgba(232, 185, 165, 0.4)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.backgroundColor = 'rgba(115, 26, 41, 0.05)';
+                e.currentTarget.style.backgroundColor = 'rgba(232, 185, 165, 0.25)';
               }}
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={19} />
               {bagCount > 0 && (
                 <span
                   style={{
@@ -221,7 +221,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                     width: '18px',
                     height: '18px',
                     borderRadius: '50%',
-                    backgroundColor: 'var(--accent-wine)',
+                    backgroundColor: 'var(--accent-brown)',
                     color: '#fff',
                     fontSize: '0.7rem',
                     fontWeight: 600,
@@ -257,12 +257,12 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                 display: 'none',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '44px',
-                height: '44px',
+                width: '42px',
+                height: '42px',
                 borderRadius: '50%',
                 background: 'transparent',
-                border: '1px solid var(--border-light)',
-                color: 'var(--text-primary)',
+                border: '1px solid rgba(107, 74, 64, 0.18)',
+                color: 'var(--accent-brown)',
                 cursor: 'pointer',
               }}
             >
@@ -285,7 +285,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            padding: '6rem 2rem 3rem',
+            padding: '5.5rem 2rem 2.5rem',
           }}
         >
           {/* Ambient Background Aura */}
@@ -294,7 +294,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
             style={{ width: '320px', height: '320px', top: '10%', right: '-10%' }}
           />
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem', zIndex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', zIndex: 1 }}>
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -303,18 +303,18 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                 onClick={() => setMobileMenuOpen(false)}
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '2.25rem',
-                  color: 'var(--text-primary)',
+                  fontSize: '2rem',
+                  color: 'var(--accent-brown)',
                   textDecoration: 'none',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  borderBottom: '1px solid var(--border-light)',
-                  paddingBottom: '0.75rem',
+                  borderBottom: '1px solid rgba(107, 74, 64, 0.1)',
+                  paddingBottom: '0.65rem',
                 }}
               >
                 <span>{link.label}</span>
-                <ArrowRight size={22} color="var(--accent-wine)" />
+                <ArrowRight size={20} color="var(--accent-brown)" />
               </a>
             ))}
           </div>
@@ -336,7 +336,7 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
                 color: 'var(--text-muted)',
               }}
             >
-              Made for Every Smile • 5 Signature Shades
+              Made for Every Smile • 5 Healing Shades
             </p>
           </div>
         </div>
@@ -350,11 +350,11 @@ export default function Navbar({ onOpenBag, bagCount = 0 }) {
           left: 0;
           width: 0%;
           height: 1.5px;
-          background-color: var(--accent-wine);
+          background-color: var(--accent-brown);
           transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .nav-link:hover {
-          color: var(--accent-wine) !important;
+          color: var(--accent-brown) !important;
         }
         .nav-link:hover::after {
           width: 100%;

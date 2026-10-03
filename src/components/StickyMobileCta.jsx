@@ -7,7 +7,7 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show sticky CTA once scrolled past hero (400px)
+      // Show sticky CTA once scrolled past hero (450px)
       if (window.scrollY > 450) {
         setVisible(true);
       } else {
@@ -27,16 +27,16 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
       className="sticky-mobile-bar"
       style={{
         position: 'fixed',
-        bottom: '16px',
-        left: '16px',
-        right: '16px',
+        bottom: '14px',
+        left: '14px',
+        right: '14px',
         zIndex: 900,
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        backgroundColor: 'rgba(255, 255, 255, 0.96)',
         backdropFilter: 'blur(16px)',
         borderRadius: '9999px',
         padding: '0.65rem 1.25rem',
-        boxShadow: '0 12px 35px rgba(45, 20, 15, 0.18)',
-        border: '1px solid rgba(115, 26, 41, 0.15)',
+        boxShadow: '0 10px 30px rgba(107, 74, 64, 0.18)',
+        border: '1px solid rgba(107, 74, 64, 0.18)',
         display: 'none',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -55,7 +55,7 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
               fontFamily: 'var(--font-serif)',
               fontSize: '1.05rem',
               fontWeight: 600,
-              color: 'var(--accent-wine)',
+              color: 'var(--accent-brown)',
               display: 'block',
               lineHeight: 1,
             }}
@@ -63,7 +63,7 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
             MESHE
           </span>
           <span style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
-            From ₹399 • 5 Shades
+            5 Healing Shades • From ₹399
           </span>
         </div>
       </div>
@@ -81,9 +81,9 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
               width: '38px',
               height: '38px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(115, 26, 41, 0.08)',
+              backgroundColor: 'rgba(232, 185, 165, 0.3)',
               border: 'none',
-              color: 'var(--accent-wine)',
+              color: 'var(--accent-brown)',
               cursor: 'pointer',
             }}
           >
@@ -96,7 +96,7 @@ export default function StickyMobileCta({ onOpenBag, bagCount = 0 }) {
                 width: '16px',
                 height: '16px',
                 borderRadius: '50%',
-                backgroundColor: 'var(--accent-wine)',
+                backgroundColor: 'var(--accent-brown)',
                 color: '#fff',
                 fontSize: '0.65rem',
                 fontWeight: 600,

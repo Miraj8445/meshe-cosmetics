@@ -1,69 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
   const sectionRef = useRef(null);
-  const imageWrapperRef = useRef(null);
-  const imageRef = useRef(null);
-  const textColRef = useRef(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      // 1. Image reveal using clip-path animation
-      if (imageWrapperRef.current) {
-        gsap.fromTo(
-          imageWrapperRef.current,
-          { clipPath: 'inset(100% 0% 0% 0%)' },
-          {
-            clipPath: 'inset(0% 0% 0% 0%)',
-            duration: 1.4,
-            ease: 'power3.inOut',
-            scrollTrigger: {
-              trigger: imageWrapperRef.current,
-              start: 'top 80%',
-            },
-          }
-        );
-      }
-
-      // 2. Parallax Image Movement inside container
-      if (imageRef.current) {
-        gsap.to(imageRef.current, {
-          yPercent: 12,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: imageWrapperRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
-
-      // 3. Text reveal from bottom
-      if (textColRef.current) {
-        gsap.from('.about-reveal-item', {
-          scrollTrigger: {
-            trigger: textColRef.current,
-            start: 'top 75%',
-          },
-          opacity: 0,
-          y: 35,
-          stagger: 0.15,
-          duration: 0.9,
-          ease: 'power3.out',
-        });
-      }
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
@@ -78,51 +16,56 @@ export default function About() {
     >
       <div className="container">
         <div className="about-grid">
-          {/* Left Column: Brand Statement & Story */}
-          <div ref={textColRef}>
-            <span className="section-tag about-reveal-item">Our Story & Essence</span>
+          
+          {/* Left Column: Brand Story */}
+          <div>
+            <span className="section-tag">Our Story & Essence</span>
 
             <h2
-              className="about-reveal-item"
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(2.4rem, 4vw, 3.6rem)',
-                lineHeight: 1.15,
-                fontWeight: 400,
-                color: 'var(--text-primary)',
-                marginBottom: '2rem',
+                fontSize: 'clamp(2.1rem, 3.8vw, 3.2rem)',
+                lineHeight: 1.2,
+                fontWeight: 500,
+                color: 'var(--accent-brown)',
+                marginBottom: '1.75rem',
               }}
             >
-              “MESHE was created around a simple idea — beauty should feel personal, effortless and expressive.”
+              Beauty as a Part of Healing
             </h2>
 
+            {/* 4. Complete Brand Story Text (Full paragraph visible & readable on mobile) */}
             <div
-              className="about-reveal-item"
               style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(1rem, 1.25vw, 1.12rem)',
+                color: 'var(--text-secondary)',
+                lineHeight: 1.85,
+                fontWeight: 300,
+                marginBottom: '2rem',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '1.25rem',
-                fontFamily: 'var(--font-sans)',
-                fontSize: '1.02rem',
-                color: 'var(--text-secondary)',
-                lineHeight: 1.8,
-                fontWeight: 300,
-                marginBottom: '2.5rem',
               }}
             >
               <p>
-                In a beauty landscape overflowing with endless color wheels and heavy synthetic formulas, MESHE was born out of an urge for clarity and luxury. We asked: what if you didn’t need twenty lipsticks, but five masterfully formulated staples that never fail you?
+                MESHE was created around a simple idea — that beauty can be a small part of healing.
               </p>
               <p>
-                Every pigment in our 5-shade collection was tested across diverse undertones in real daylight. Handcrafted with skin-nourishing botanical extracts and pure velvet polymers, MESHE delivers radiant color that breathes with you throughout your day.
+                We believe beauty is not about hiding what you’ve been through or becoming someone else; it’s about feeling comfortable enough to be yourself again. MESHE was created for those little moments when you’re finding your way back to yourself—when you’re learning to let go, growing through what happened, rebuilding your confidence, and slowly discovering your smile again.
+              </p>
+              <p>
+                Our shades are designed to feel personal, effortless and expressive, giving you a little colour to match every mood and every version of you. From the days you feel a little lost to the days you feel ready to start again, MESHE is here to remind you that healing doesn’t have to look perfect—it can be soft, messy, colourful and completely your own.
+              </p>
+              <p style={{ color: 'var(--accent-brown)', fontWeight: 500 }}>
+                Because sometimes, something as simple as putting on your favourite shade can become a moment of choosing yourself.
               </p>
             </div>
 
-            {/* Editable Founder Note Placeholder */}
+            {/* Founders' Signature Touch */}
             <div
-              className="about-reveal-item"
               style={{
-                borderLeft: '2px solid var(--accent-wine)',
+                borderLeft: '2px solid var(--accent-brown)',
                 paddingLeft: '1.5rem',
                 paddingTop: '0.25rem',
                 paddingBottom: '0.25rem',
@@ -131,42 +74,42 @@ export default function About() {
               <p
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.2rem',
+                  fontSize: '1.18rem',
                   fontStyle: 'italic',
-                  color: 'var(--accent-wine)',
+                  color: 'var(--accent-brown)',
                   lineHeight: 1.5,
-                  marginBottom: '0.5rem',
+                  marginBottom: '0.4rem',
                 }}
               >
-                “When you wear a shade that truly belongs to you, confidence isn't put on—it simply shines.”
+                “Two girls, one dream — creating a brand born from our own story of becoming.”
               </p>
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.78rem',
-                  letterSpacing: '0.12em',
+                  letterSpacing: '0.14em',
                   textTransform: 'uppercase',
                   color: 'var(--text-muted)',
                   fontWeight: 600,
                 }}
               >
-                The MESHE Founders’ Studio
+                The MESHE Founders
               </span>
             </div>
           </div>
 
-          {/* Right Column: Visual with Mask & Parallax */}
+          {/* Right Column: Visual with Mask in Soft Warm Palette */}
           <div style={{ position: 'relative' }}>
             
             {/* Background Decorative Accent Frame */}
             <div
               style={{
                 position: 'absolute',
-                top: '-18px',
-                right: '-18px',
+                top: '-15px',
+                right: '-15px',
                 width: '100%',
                 height: '100%',
-                border: '1.5px solid rgba(115, 26, 41, 0.15)',
+                border: '1.5px solid rgba(107, 74, 64, 0.18)',
                 borderRadius: '28px',
                 zIndex: 0,
               }}
@@ -175,62 +118,60 @@ export default function About() {
 
             {/* Masked Image Container */}
             <div
-              ref={imageWrapperRef}
               style={{
                 position: 'relative',
                 zIndex: 1,
                 borderRadius: '24px',
                 overflow: 'hidden',
-                boxShadow: '0 24px 50px rgba(45, 20, 15, 0.12)',
-                height: '560px',
+                boxShadow: '0 20px 45px rgba(107, 74, 64, 0.12)',
+                backgroundColor: 'var(--bg-secondary)',
               }}
             >
               <img
-                ref={imageRef}
                 src="/images/editorial-model.jpg"
-                alt="MESHE Woman — Made for Every Smile"
+                alt="MESHE Woman — Healing Beauty"
                 style={{
                   width: '100%',
-                  height: '115%',
+                  height: 'auto',
+                  maxHeight: '560px',
                   objectFit: 'cover',
                   display: 'block',
-                  transform: 'translateY(-5%)',
                 }}
               />
             </div>
 
-            {/* Floating Luxury Detail Badge */}
+            {/* Floating Soft Detail Badge */}
             <div
               style={{
                 position: 'absolute',
-                bottom: '-25px',
-                left: '-25px',
+                bottom: '-20px',
+                left: '-20px',
                 zIndex: 2,
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                 backdropFilter: 'blur(10px)',
-                padding: '1.25rem 1.6rem',
+                padding: '1.15rem 1.5rem',
                 borderRadius: '16px',
-                border: '1px solid var(--border-light)',
-                boxShadow: '0 16px 36px rgba(45, 20, 15, 0.1)',
-                maxWidth: '240px',
+                border: '1px solid rgba(107, 74, 64, 0.12)',
+                boxShadow: '0 14px 30px rgba(107, 74, 64, 0.08)',
+                maxWidth: '250px',
               }}
               className="about-floating-badge"
             >
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.3rem',
+                  fontSize: '1.25rem',
                   fontWeight: 600,
-                  color: 'var(--accent-wine)',
+                  color: 'var(--accent-brown)',
                   display: 'block',
-                  lineHeight: 1.1,
+                  lineHeight: 1.15,
                   marginBottom: '4px',
                 }}
               >
-                100% Honest
+                Gentle & Honest
               </span>
-              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.74rem', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
-                No filters. Just skin-loving ingredients and rich authentic pigment.
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.76rem', color: 'var(--text-secondary)', lineHeight: 1.45 }}>
+                Enriched with Shea Butter, Jojoba & Vitamin E. Beauty that truly cares for you.
               </p>
             </div>
 
@@ -243,7 +184,7 @@ export default function About() {
         @media (max-width: 900px) {
           .about-grid {
             grid-template-columns: 1fr !important;
-            gap: 3.5rem !important;
+            gap: 2.75rem !important;
           }
           .about-frame-border, .about-floating-badge {
             display: none !important;

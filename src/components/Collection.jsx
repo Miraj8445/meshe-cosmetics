@@ -17,15 +17,15 @@ export default function Collection({ onGetCollection }) {
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion || isMobile) {
-        // Simplified non-pinning reveal for mobile or reduced motion
+        // Simplified reveal for mobile or reduced motion
         gsap.from('.collection-anim-item', {
           scrollTrigger: {
             trigger: pinSectionRef.current,
             start: 'top 75%',
           },
           opacity: 0,
-          y: 40,
-          stagger: 0.15,
+          y: 35,
+          stagger: 0.12,
           duration: 0.8,
           ease: 'power2.out',
         });
@@ -37,29 +37,29 @@ export default function Collection({ onGetCollection }) {
         scrollTrigger: {
           trigger: pinSectionRef.current,
           start: 'top top',
-          end: '+=160%',
+          end: '+=150%',
           pin: true,
           scrub: 1.2,
           anticipatePin: 1,
         },
       });
 
-      // 1. Background color transitions from ivory -> deep royal wine
+      // 1. Background color transitions from cream -> deep warm earth brown
       tl.to(
         pinSectionRef.current,
         {
-          backgroundColor: '#24070D',
+          backgroundColor: '#38241F',
           duration: 1.5,
           ease: 'power1.inOut',
         },
         0
       );
 
-      // Transition text colors to light
+      // Transition text colors to light warm cream
       tl.to(
         '.coll-text-switch',
         {
-          color: '#FDF9F6',
+          color: '#FAF4EE',
           duration: 1.2,
         },
         0
@@ -68,19 +68,19 @@ export default function Collection({ onGetCollection }) {
       tl.to(
         '.coll-subtext-switch',
         {
-          color: '#D1BEB9',
+          color: '#E8D7C8',
           duration: 1.2,
         },
         0
       );
 
-      // 2. Individual lipstick bottles enter from different angles and arrange into composition
+      // 2. Individual lipstick bottles enter and settle into composition
       const initialOffsets = [
-        { x: -280, y: -120, rotate: -18, scale: 0.8 },
-        { x: -140, y: 160, rotate: -10, scale: 0.85 },
-        { x: 0, y: -190, rotate: 4, scale: 0.9 },
-        { x: 140, y: 170, rotate: 12, scale: 0.85 },
-        { x: 280, y: -110, rotate: 20, scale: 0.8 },
+        { x: -240, y: -100, rotate: -14, scale: 0.85 },
+        { x: -120, y: 140, rotate: -8, scale: 0.9 },
+        { x: 0, y: -160, rotate: 3, scale: 0.92 },
+        { x: 120, y: 150, rotate: 10, scale: 0.9 },
+        { x: 240, y: -90, rotate: 16, scale: 0.85 },
       ];
 
       bottlesRef.current.forEach((bottle, i) => {
@@ -91,7 +91,7 @@ export default function Collection({ onGetCollection }) {
           y: off.y,
           rotate: off.rotate,
           scale: off.scale,
-          opacity: 0.75,
+          opacity: 0.8,
         });
 
         tl.to(
@@ -102,14 +102,14 @@ export default function Collection({ onGetCollection }) {
             rotate: 0,
             scale: 1,
             opacity: 1,
-            duration: 1.6,
+            duration: 1.5,
             ease: 'power2.out',
           },
           0.3 + i * 0.08
         );
       });
 
-      // 3. Collection headline & gold badge reveals
+      // 3. Collection headline & price badges reveal
       tl.fromTo(
         '.coll-headline-reveal',
         { y: 30, opacity: 0 },
@@ -117,15 +117,13 @@ export default function Collection({ onGetCollection }) {
         0.8
       );
 
-      // 4. Price scales subtly into focus
       tl.fromTo(
         '.coll-price-badge',
         { scale: 0.85, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.5)' },
+        { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.4)' },
         1.1
       );
 
-      // 5. Offer perks and CTA fade in
       tl.fromTo(
         ['.coll-perks-list', '.coll-cta-reveal'],
         { y: 25, opacity: 0 },
@@ -146,13 +144,13 @@ export default function Collection({ onGetCollection }) {
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          backgroundColor: '#FAF7F2',
-          padding: '6rem 0',
+          backgroundColor: 'var(--bg-primary)',
+          padding: '5.5rem 0',
           overflow: 'hidden',
           transition: 'background-color 0.4s ease',
         }}
       >
-        {/* Ambient Wine/Gold Lighting Glow */}
+        {/* Ambient Warm Glow */}
         <div
           className="ambient-glow ambient-wine"
           style={{
@@ -181,32 +179,32 @@ export default function Collection({ onGetCollection }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minHeight: '480px',
+                minHeight: '440px',
               }}
             >
-              {/* Luxury Circular Backdrop */}
+              {/* Soft Circular Backdrop */}
               <div
                 style={{
                   position: 'absolute',
-                  width: 'min(500px, 90vw)',
-                  height: 'min(500px, 90vw)',
+                  width: 'min(480px, 88vw)',
+                  height: 'min(480px, 88vw)',
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(115, 26, 41, 0.25) 0%, rgba(36, 7, 13, 0.1) 60%, transparent 100%)',
-                  border: '1px solid rgba(197, 160, 89, 0.2)',
+                  background: 'radial-gradient(circle, rgba(232, 185, 165, 0.3) 0%, rgba(107, 74, 64, 0.1) 60%, transparent 100%)',
+                  border: '1px solid rgba(232, 185, 165, 0.3)',
                   zIndex: 0,
                 }}
               />
 
-              {/* 5 Assembling Lipstick Bottles */}
+              {/* 5 Assembling Lipstick Bottles — Healing Order */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'flex-end',
                   justifyContent: 'center',
-                  gap: '0.75rem',
+                  gap: '0.65rem',
                   position: 'relative',
                   zIndex: 2,
-                  padding: '2rem 0',
+                  padding: '1.5rem 0',
                 }}
               >
                 {PRODUCTS.map((prod, idx) => (
@@ -218,7 +216,7 @@ export default function Collection({ onGetCollection }) {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      filter: 'drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35))',
+                      filter: 'drop-shadow(0 16px 25px rgba(0, 0, 0, 0.25))',
                       willChange: 'transform, opacity',
                     }}
                   >
@@ -226,10 +224,10 @@ export default function Collection({ onGetCollection }) {
                       src={prod.image}
                       alt={prod.name}
                       style={{
-                        height: idx === 2 ? '340px' : idx === 1 || idx === 3 ? '310px' : '280px',
+                        height: idx === 2 ? '300px' : idx === 1 || idx === 3 ? '270px' : '250px',
                         width: 'auto',
                         objectFit: 'contain',
-                        transform: idx === 2 ? 'translateY(-10px)' : 'none',
+                        transform: idx === 2 ? 'translateY(-8px)' : 'none',
                       }}
                     />
 
@@ -239,10 +237,10 @@ export default function Collection({ onGetCollection }) {
                         fontFamily: 'var(--font-sans)',
                         fontSize: '0.62rem',
                         fontWeight: 600,
-                        letterSpacing: '0.12em',
+                        letterSpacing: '0.1em',
                         textTransform: 'uppercase',
-                        color: 'var(--accent-gold-light)',
-                        marginTop: '0.5rem',
+                        color: 'var(--pastel-peach)',
+                        marginTop: '0.4rem',
                         whiteSpace: 'nowrap',
                       }}
                     >
@@ -252,14 +250,14 @@ export default function Collection({ onGetCollection }) {
                 ))}
               </div>
 
-              {/* Box Packaging Glimpse in Background */}
+              {/* Box Packaging Glimpse */}
               <div
                 style={{
                   position: 'absolute',
                   top: '15%',
                   right: '5%',
                   zIndex: 1,
-                  opacity: 0.15,
+                  opacity: 0.12,
                   pointerEvents: 'none',
                   filter: 'blur(2px)',
                 }}
@@ -267,13 +265,13 @@ export default function Collection({ onGetCollection }) {
                 <img
                   src="/images/logo-light.png"
                   alt="MESHE seal"
-                  style={{ width: '220px', height: '220px' }}
+                  style={{ width: '200px', height: '200px' }}
                 />
               </div>
 
             </div>
 
-            {/* Right Column: Editorial Campaign Offer & Details */}
+            {/* Right Column: Collection Details */}
             <div style={{ maxWidth: '580px' }}>
               
               {/* Badge */}
@@ -286,17 +284,17 @@ export default function Collection({ onGetCollection }) {
                     fontFamily: 'var(--font-sans)',
                     fontSize: '0.74rem',
                     fontWeight: 600,
-                    letterSpacing: '0.22em',
+                    letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    color: 'var(--accent-gold-light)',
-                    backgroundColor: 'rgba(197, 160, 89, 0.12)',
+                    color: 'var(--accent-brown)',
+                    backgroundColor: 'rgba(232, 185, 165, 0.3)',
                     padding: '0.4rem 1.1rem',
                     borderRadius: '9999px',
-                    border: '1px solid rgba(197, 160, 89, 0.25)',
+                    border: '1px solid rgba(107, 74, 64, 0.18)',
                   }}
                 >
-                  <Sparkles size={14} color="var(--accent-gold)" />
-                  Exclusive 5-Shade Vault Offer
+                  <Sparkles size={14} color="var(--accent-brown)" />
+                  The Complete 5-Shade Set
                 </span>
               </div>
 
@@ -305,15 +303,14 @@ export default function Collection({ onGetCollection }) {
                 className="coll-headline-reveal coll-text-switch"
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
-                  lineHeight: 1.1,
-                  fontWeight: 400,
+                  fontSize: 'clamp(2.3rem, 4.2vw, 3.6rem)',
+                  lineHeight: 1.15,
+                  fontWeight: 500,
                   color: 'var(--text-primary)',
-                  marginBottom: '1rem',
-                  letterSpacing: '-0.01em',
+                  marginBottom: '0.85rem',
                 }}
               >
-                The Complete MESHE Collection
+                {COLLECTION_OFFER.title}
               </h2>
 
               {/* Subheading */}
@@ -321,27 +318,27 @@ export default function Collection({ onGetCollection }) {
                 className="coll-subtext-switch"
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '1.45rem',
-                  color: 'var(--accent-wine)',
+                  fontSize: '1.4rem',
+                  color: 'var(--accent-brown)',
                   fontStyle: 'italic',
-                  marginBottom: '1.5rem',
+                  marginBottom: '1.25rem',
                 }}
               >
-                “Five shades. One complete collection.”
+                “{COLLECTION_OFFER.subtitle}”
               </p>
 
               <p
                 className="coll-subtext-switch"
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '1rem',
+                  fontSize: '0.98rem',
                   color: 'var(--text-secondary)',
-                  lineHeight: 1.7,
+                  lineHeight: 1.75,
                   fontWeight: 300,
                   marginBottom: '2rem',
                 }}
               >
-                Why choose a single mood when you can wear them all? From effortless daytime nudes to hypnotic evening reds, receive every handcrafted MESHE lipstick in a bespoke presentation set.
+                Experience the full emotional journey from Lost Love to Nevermine. All 5 healing matte shades enriched with nourishing Shea Butter, Jojoba Oil & Vitamin E, curated in one keepsake gift box.
               </p>
 
               {/* Price & Savings Badge */}
@@ -351,10 +348,10 @@ export default function Collection({ onGetCollection }) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '1.5rem',
-                  padding: '1.25rem 1.75rem',
+                  padding: '1.2rem 1.6rem',
                   borderRadius: '18px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(197, 160, 89, 0.25)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(232, 185, 165, 0.35)',
                   backdropFilter: 'blur(10px)',
                   marginBottom: '2rem',
                   width: 'fit-content',
@@ -372,15 +369,15 @@ export default function Collection({ onGetCollection }) {
                       display: 'block',
                     }}
                   >
-                    Special Vault Price
+                    Special Set Price
                   </span>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.65rem' }}>
                     <span
                       style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '2.5rem',
+                        fontSize: '2.4rem',
                         fontWeight: 600,
-                        color: 'var(--accent-gold-light)',
+                        color: 'var(--pastel-peach)',
                         lineHeight: 1,
                       }}
                     >
@@ -389,7 +386,7 @@ export default function Collection({ onGetCollection }) {
                     <span
                       style={{
                         fontFamily: 'var(--font-sans)',
-                        fontSize: '1.1rem',
+                        fontSize: '1.05rem',
                         color: 'var(--text-muted)',
                         textDecoration: 'line-through',
                       }}
@@ -401,7 +398,7 @@ export default function Collection({ onGetCollection }) {
 
                 <div
                   style={{
-                    backgroundColor: 'rgba(197, 160, 89, 0.2)',
+                    backgroundColor: 'rgba(201, 154, 154, 0.3)',
                     color: '#FFF',
                     padding: '0.45rem 0.95rem',
                     borderRadius: '9999px',
@@ -409,7 +406,7 @@ export default function Collection({ onGetCollection }) {
                     fontSize: '0.78rem',
                     fontWeight: 700,
                     letterSpacing: '0.08em',
-                    border: '1px solid rgba(197, 160, 89, 0.4)',
+                    border: '1px solid rgba(201, 154, 154, 0.5)',
                   }}
                 >
                   SAVE ₹{COLLECTION_OFFER.savings} (20% OFF)
@@ -427,30 +424,30 @@ export default function Collection({ onGetCollection }) {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <CheckCircle2 size={18} color="var(--accent-gold)" />
+                  <CheckCircle2 size={18} color="var(--pastel-peach)" />
                   <span className="coll-text-switch" style={{ fontSize: '0.84rem', fontWeight: 500 }}>
-                    All 5 Full-Size Lipsticks
+                    All 5 Healing Shades
                   </span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Gift size={18} color="var(--accent-gold)" />
+                  <Gift size={18} color="var(--pastel-peach)" />
                   <span className="coll-text-switch" style={{ fontSize: '0.84rem', fontWeight: 500 }}>
-                    Complimentary Velvet Pouch
+                    Complimentary Soft Pouch
                   </span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Truck size={18} color="var(--accent-gold)" />
+                  <Truck size={18} color="var(--pastel-peach)" />
                   <span className="coll-text-switch" style={{ fontSize: '0.84rem', fontWeight: 500 }}>
                     Free Express Delivery (India)
                   </span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <Sparkles size={18} color="var(--accent-gold)" />
+                  <Sparkles size={18} color="var(--pastel-peach)" />
                   <span className="coll-text-switch" style={{ fontSize: '0.84rem', fontWeight: 500 }}>
-                    Signature Gift Box Packaging
+                    Shea Butter & Vitamin E
                   </span>
                 </div>
               </div>
@@ -471,7 +468,7 @@ export default function Collection({ onGetCollection }) {
                   rel="noopener noreferrer"
                   className="btn btn-gold btn-shimmer"
                   style={{
-                    padding: '1.1rem 2.5rem',
+                    padding: '1.05rem 2.4rem',
                     fontSize: '0.92rem',
                   }}
                 >
@@ -483,7 +480,7 @@ export default function Collection({ onGetCollection }) {
                   onClick={onGetCollection}
                   className="btn btn-outline-light"
                   style={{
-                    padding: '1.1rem 2rem',
+                    padding: '1.05rem 2rem',
                     fontSize: '0.92rem',
                   }}
                 >
@@ -500,7 +497,7 @@ export default function Collection({ onGetCollection }) {
           @media (max-width: 992px) {
             .collection-grid {
               grid-template-columns: 1fr !important;
-              gap: 3.5rem !important;
+              gap: 3rem !important;
               text-align: center;
             }
             .collection-grid > div:last-child {

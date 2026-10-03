@@ -21,7 +21,7 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
         return;
       }
 
-      // Master GSAP Timeline for Cinematic Page Load
+      // Master GSAP Timeline for Soft, Emotional Page Load
       const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
       tl.from(glow1Ref.current, { opacity: 0, scale: 0.9, duration: 0.5 }, 0)
@@ -30,17 +30,16 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
           productRef.current,
           {
             opacity: 0,
-            scale: 0.9,
-            rotate: -3,
+            scale: 0.92,
             y: 20,
-            duration: 0.6,
-            ease: 'back.out(1.2)',
+            duration: 0.65,
+            ease: 'power2.out',
           },
           0
         )
         .from('.hero-badge-tag', { opacity: 0, y: 10, duration: 0.35 }, 0.05)
-        .from('.hero-title-word', { opacity: 0, y: 15, duration: 0.35, stagger: 0.02 }, 0.08)
-        .from('.hero-tagline', { opacity: 0, y: 12, duration: 0.35 }, 0.12)
+        .from('.hero-brand-name', { opacity: 0, y: 15, duration: 0.4 }, 0.08)
+        .from('.hero-main-line', { opacity: 0, y: 12, duration: 0.4 }, 0.12)
         .from('.hero-desc', { opacity: 0, y: 10, duration: 0.35 }, 0.16)
         .from('.hero-cta-group', { opacity: 0, y: 10, duration: 0.35 }, 0.2)
         .from('.hero-trust-item', { opacity: 0, y: 8, stagger: 0.04, duration: 0.3 }, 0.24)
@@ -48,15 +47,14 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
           badgeRef.current,
           {
             opacity: 0,
-            scale: 0.7,
-            rotate: 10,
+            scale: 0.75,
             duration: 0.45,
-            ease: 'back.out(1.5)',
+            ease: 'back.out(1.4)',
           },
           0.2
         );
 
-      // Desktop Mouse Parallax Effect (subtle & elegant)
+      // Subtle Parallax Effect (Desktop only)
       const handleMouseMove = (e) => {
         if (window.innerWidth < 992) return;
         const { clientX, clientY } = e;
@@ -66,23 +64,22 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
         const moveY = (clientY - centerY) / 45;
 
         gsap.to(productRef.current, {
-          x: moveX,
-          y: moveY,
-          rotate: moveX * 0.15,
+          x: moveX * 0.8,
+          y: moveY * 0.8,
           duration: 1.2,
           ease: 'power2.out',
         });
 
         gsap.to(badgeRef.current, {
-          x: -moveX * 1.4,
-          y: -moveY * 1.4,
+          x: -moveX * 1.2,
+          y: -moveY * 1.2,
           duration: 1.4,
           ease: 'power2.out',
         });
 
         gsap.to(glow1Ref.current, {
-          x: moveX * 2,
-          y: moveY * 2,
+          x: moveX * 1.5,
+          y: moveY * 1.5,
           duration: 2,
           ease: 'power1.out',
         });
@@ -104,23 +101,23 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '92vh',
         display: 'flex',
         alignItems: 'center',
-        paddingTop: '7.5rem',
-        paddingBottom: '4.5rem',
+        paddingTop: '6.5rem',
+        paddingBottom: '4rem',
         backgroundColor: 'var(--bg-primary)',
         overflow: 'hidden',
       }}
     >
-      {/* Ambient Lighting Orbs */}
+      {/* Ambient Comfort Lighting */}
       <div
         ref={glow1Ref}
         className="ambient-glow ambient-blush"
         style={{
           width: '580px',
           height: '580px',
-          top: '8%',
+          top: '6%',
           right: '5%',
         }}
       />
@@ -128,8 +125,8 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
         ref={glow2Ref}
         className="ambient-glow ambient-wine"
         style={{
-          width: '420px',
-          height: '420px',
+          width: '440px',
+          height: '440px',
           bottom: '5%',
           left: '-5%',
         }}
@@ -137,11 +134,12 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div className="hero-grid">
-          {/* Left Column: Editorial Headline & Actions */}
+          
+          {/* Left Column: Healing Story Headline & Actions */}
           <div className="hero-headline-col" style={{ maxWidth: '640px' }}>
             
-            {/* Tag / Micro-Badge */}
-            <div className="hero-badge-tag" style={{ marginBottom: '1.5rem' }}>
+            {/* 1. Top Badge: 5 Healing Shades • Matte Finish */}
+            <div className="hero-badge-tag" style={{ marginBottom: '1.25rem' }}>
               <span
                 style={{
                   display: 'inline-flex',
@@ -150,69 +148,65 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.78rem',
                   fontWeight: 600,
-                  letterSpacing: '0.22em',
+                  letterSpacing: '0.18em',
                   textTransform: 'uppercase',
-                  color: 'var(--accent-wine)',
-                  backgroundColor: 'rgba(115, 26, 41, 0.06)',
+                  color: 'var(--accent-brown)',
+                  backgroundColor: 'rgba(232, 185, 165, 0.28)',
                   padding: '0.45rem 1.15rem',
                   borderRadius: '9999px',
-                  border: '1px solid rgba(115, 26, 41, 0.12)',
+                  border: '1px solid rgba(107, 74, 64, 0.16)',
                 }}
               >
-                <Sparkles size={14} color="var(--accent-wine)" />
-                5 Signature Shades • Velvet Satin-Matte
+                <Sparkles size={14} color="var(--accent-brown)" />
+                5 Healing Shades • Matte Finish
               </span>
             </div>
 
-            {/* Brand Title: MESHE */}
+            {/* Brand Name */}
             <div
-              ref={headlineRef}
+              className="hero-brand-name"
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(3.8rem, 8vw, 6.75rem)',
+                fontSize: 'clamp(3rem, 6.5vw, 5.25rem)',
                 lineHeight: 0.95,
-                fontWeight: 400,
-                letterSpacing: '-0.02em',
-                color: 'var(--text-primary)',
-                marginBottom: '1rem',
+                fontWeight: 500,
+                letterSpacing: '0.04em',
+                color: 'var(--accent-brown)',
+                marginBottom: '0.85rem',
               }}
             >
-              <span className="hero-title-word" style={{ display: 'inline-block' }}>M</span>
-              <span className="hero-title-word" style={{ display: 'inline-block' }}>E</span>
-              <span className="hero-title-word" style={{ display: 'inline-block' }}>S</span>
-              <span className="hero-title-word" style={{ display: 'inline-block' }}>H</span>
-              <span className="hero-title-word" style={{ display: 'inline-block' }}>E</span>
+              MESHE
             </div>
 
-            {/* Tagline */}
+            {/* 8. Main Line: Five shades. One healing journey. */}
             <h1
-              className="hero-tagline"
+              className="hero-main-line"
               style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 3.8vw, 3.4rem)',
-                lineHeight: 1.15,
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)',
+                lineHeight: 1.18,
                 fontWeight: 400,
-                color: 'var(--accent-wine)',
-                marginBottom: '1.5rem',
+                color: 'var(--text-primary)',
+                marginBottom: '1.25rem',
               }}
             >
-              “Made for Every Smile”
+              Five shades. One healing journey.
             </h1>
 
-            {/* Short Supporting Sentence */}
+            {/* 1. Supporting Sentence: Healing-focused copy */}
             <p
               className="hero-desc"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(1.05rem, 1.4vw, 1.25rem)',
+                fontSize: 'clamp(1.02rem, 1.35vw, 1.2rem)',
                 color: 'var(--text-secondary)',
                 fontWeight: 300,
-                lineHeight: 1.7,
+                lineHeight: 1.75,
                 marginBottom: '2.5rem',
-                maxWidth: '520px',
+                maxWidth: '540px',
               }}
             >
-              Five iconic shades. One signature smile. An ultra-weightless velvet formulation crafted to embrace and flatter every undertone.
+              Colours inspired by real emotions, real stories, and the beautiful journey of finding yourself again.
             </p>
 
             {/* CTAs */}
@@ -223,7 +217,7 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                 alignItems: 'center',
                 gap: '1.25rem',
                 flexWrap: 'wrap',
-                marginBottom: '3.5rem',
+                marginBottom: '3rem',
               }}
             >
               <button
@@ -231,10 +225,10 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                 className="btn btn-primary btn-shimmer"
                 style={{
                   fontSize: '0.92rem',
-                  padding: '1.05rem 2.4rem',
+                  padding: '1rem 2.3rem',
                 }}
               >
-                <span>Explore Shades</span>
+                <span>Explore The 5 Shades</span>
                 <ArrowDownRight size={18} />
               </button>
 
@@ -243,49 +237,49 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                 className="btn btn-secondary"
                 style={{
                   fontSize: '0.92rem',
-                  padding: '1.05rem 2.2rem',
+                  padding: '1rem 2.1rem',
                 }}
               >
-                Get the Collection (₹1596)
+                The Full Set (₹1596)
               </button>
             </div>
 
-            {/* Trust & Quality Highlights */}
+            {/* Trust & Healing Care Highlights */}
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '2.5rem',
+                gap: '2.25rem',
                 flexWrap: 'wrap',
                 borderTop: '1px solid var(--border-light)',
-                paddingTop: '2rem',
+                paddingTop: '1.75rem',
               }}
             >
               <div className="hero-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <ShieldCheck size={18} color="var(--accent-wine)" />
+                <ShieldCheck size={18} color="var(--accent-brown)" />
                 <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
                   ₹399 per shade
                 </span>
               </div>
 
               <div className="hero-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Heart size={18} color="var(--accent-wine)" />
+                <Heart size={18} color="var(--pastel-rose)" />
                 <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
-                  100% Cruelty-Free
+                  100% Cruelty-Free & Vegan
                 </span>
               </div>
 
               <div className="hero-trust-item" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <Sparkles size={18} color="var(--accent-wine)" />
+                <Sparkles size={18} color="var(--accent-brown)" />
                 <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
-                  All-Day Weightless Comfort
+                  Shea Butter, Jojoba & Vit E
                 </span>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Hero Lipstick Visual */}
+          {/* Right Column: Hero Product Visual (Warm, Healing Aura) */}
           <div
             className="hero-product-col"
             style={{
@@ -293,90 +287,94 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              padding: '2rem 0',
+              padding: '1.5rem 0',
             }}
           >
-            {/* Decorative Architectural Pedestal Circle */}
+            {/* Soft Pastel Circular Backdrop */}
             <div
               style={{
                 position: 'absolute',
-                width: 'min(480px, 85vw)',
-                height: 'min(480px, 85vw)',
+                width: 'min(460px, 85vw)',
+                height: 'min(460px, 85vw)',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, #F4ECE6 0%, #EFE5DD 70%, transparent 100%)',
-                border: '1px solid rgba(115, 26, 41, 0.08)',
+                background: 'radial-gradient(circle, #E8D7C8 0%, #F7EFE8 70%, transparent 100%)',
+                border: '1px solid rgba(107, 74, 64, 0.1)',
                 zIndex: 0,
               }}
             />
 
-            {/* Main Product Visual */}
+            {/* Main Product Visual — Fully visible, never cropped on mobile */}
             <div
               ref={productRef}
               style={{
                 position: 'relative',
                 zIndex: 2,
-                filter: 'drop-shadow(0 28px 45px rgba(50, 15, 20, 0.22))',
+                filter: 'drop-shadow(0 20px 35px rgba(107, 74, 64, 0.18))',
                 willChange: 'transform',
-                maxHeight: 'min(620px, 75vh)',
                 display: 'flex',
                 justifyContent: 'center',
+                alignItems: 'center',
+                width: '100%',
               }}
             >
               <img
                 src="/images/hero-lipstick.png"
-                alt="MESHE Luxury Velvet Lipstick"
+                alt="MESHE Healing Velvet Lipstick"
                 style={{
                   height: 'auto',
-                  maxHeight: 'min(580px, 70vh)',
+                  maxHeight: 'min(520px, 60vh)',
                   maxWidth: '100%',
                   objectFit: 'contain',
+                  display: 'block',
+                  margin: '0 auto',
                 }}
               />
             </div>
 
-            {/* Floating Luxury Seal Badge */}
+            {/* 7. Healing-focused floating element (replacing luxury signature seal) */}
             <div
               ref={badgeRef}
               className="pulse-badge"
               style={{
                 position: 'absolute',
-                top: '12%',
+                top: '10%',
                 right: '4%',
                 zIndex: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(255, 255, 255, 0.94)',
                 backdropFilter: 'blur(12px)',
-                padding: '1.1rem 1.3rem',
+                padding: '1rem',
                 borderRadius: '50%',
-                boxShadow: '0 16px 36px rgba(45, 20, 15, 0.12)',
-                border: '1px solid rgba(115, 26, 41, 0.15)',
+                boxShadow: '0 12px 30px rgba(107, 74, 64, 0.12)',
+                border: '1px solid rgba(232, 185, 165, 0.6)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textAlign: 'center',
-                width: '110px',
-                height: '110px',
+                width: '112px',
+                height: '112px',
               }}
             >
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.62rem',
-                  letterSpacing: '0.18em',
+                  letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: 'var(--text-muted)',
+                  color: 'var(--accent-brown)',
                   lineHeight: 1,
-                  marginBottom: '3px',
+                  marginBottom: '4px',
+                  fontWeight: 600,
                 }}
               >
-                Signature
+                Healing Touch
               </span>
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
                   fontSize: '1.45rem',
                   fontWeight: 600,
-                  color: 'var(--accent-wine)',
+                  color: 'var(--accent-brown)',
                   lineHeight: 1,
                 }}
               >
@@ -386,8 +384,8 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.58rem',
-                  color: 'var(--text-secondary)',
-                  marginTop: '3px',
+                  color: 'var(--text-muted)',
+                  marginTop: '4px',
                   fontWeight: 500,
                 }}
               >
@@ -395,29 +393,29 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
               </span>
             </div>
 
-            {/* Bottom Shade Pill Indicator */}
+            {/* 7. Bottom Pill: Healing-focused message (soft, comforting) */}
             <div
               style={{
                 position: 'absolute',
-                bottom: '4%',
+                bottom: '2%',
                 zIndex: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                backgroundColor: 'rgba(255, 255, 255, 0.94)',
                 backdropFilter: 'blur(10px)',
-                padding: '0.65rem 1.4rem',
+                padding: '0.65rem 1.35rem',
                 borderRadius: '9999px',
-                border: '1px solid var(--border-light)',
-                boxShadow: '0 8px 24px rgba(45, 20, 15, 0.08)',
+                border: '1px solid rgba(107, 74, 64, 0.12)',
+                boxShadow: '0 8px 24px rgba(107, 74, 64, 0.08)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.75rem',
+                gap: '0.7rem',
               }}
             >
               <span
                 style={{
-                  width: '12px',
-                  height: '12px',
+                  width: '10px',
+                  height: '10px',
                   borderRadius: '50%',
-                  backgroundColor: '#933B3F',
+                  backgroundColor: 'var(--pastel-rose)',
                   display: 'inline-block',
                 }}
               />
@@ -427,10 +425,10 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
                   fontSize: '0.78rem',
                   fontWeight: 500,
                   color: 'var(--text-primary)',
-                  letterSpacing: '0.04em',
+                  letterSpacing: '0.02em',
                 }}
               >
-                Featured: Shade 05 — Lost Love
+                A Little Colour for Your Healing Journey
               </span>
             </div>
 
@@ -443,10 +441,10 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
         @media (max-width: 992px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
+            gap: 2.25rem !important;
             text-align: center;
           }
-          .hero-grid > div:first-child {
+          .hero-headline-col {
             margin: 0 auto;
           }
           .hero-cta-group {
