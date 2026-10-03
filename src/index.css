@@ -84,13 +84,21 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   overflow-x: hidden;
+  max-width: 100vw;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 ::selection {
@@ -327,8 +335,247 @@ h1, h2, h3, h4, .font-serif {
   gap: 1rem;
 }
 
-/* Tablet & Mobile Breakpoints (<= 960px) */
-@media (max-width: 960px) {
+/* ==========================================================================
+   COLLECTION SECTION (RESPONSIVE 5-SHADE SHOWCASE)
+   ========================================================================== */
+#collection {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+.collection-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-primary);
+  padding: 5.5rem 0;
+  overflow: hidden;
+  transition: background-color 0.4s ease;
+  width: 100%;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.5rem;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.collection-stage-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.collection-backdrop-circle {
+  position: absolute;
+  width: min(480px, 88vw);
+  height: min(480px, 88vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 185, 165, 0.3) 0%, rgba(107, 74, 64, 0.1) 60%, transparent 100%);
+  border: 1px solid rgba(232, 185, 165, 0.3);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.collection-bottles-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.collection-bottle-item {
+  flex: 0 1 18%;
+  max-width: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 16px 25px rgba(0, 0, 0, 0.25));
+  will-change: transform, opacity;
+}
+
+.collection-bottle-img {
+  width: 100%;
+  height: auto;
+  max-height: 270px;
+  object-fit: contain;
+  display: block;
+}
+
+.collection-bottle-img-center {
+  max-height: 300px;
+  transform: translateY(-8px);
+}
+
+.collection-bottle-img-mid {
+  max-height: 270px;
+}
+
+.collection-bottle-img-outer {
+  max-height: 250px;
+}
+
+.collection-shade-label {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pastel-peach);
+  margin-top: 0.45rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.collection-details-col {
+  max-width: 580px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Tablet & Mobile Breakpoints (<= 992px) */
+@media (max-width: 992px) {
+  .collection-section {
+    min-height: auto !important;
+    display: block !important;
+    background-color: #38241F !important;
+    padding: 3.5rem 0 !important;
+  }
+
+  #collection section {
+    background-color: #38241F !important;
+    padding: 3.5rem 0 !important;
+  }
+
+  .coll-text-switch {
+    color: #FAF4EE !important;
+  }
+
+  .coll-subtext-switch {
+    color: #E8D7C8 !important;
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .collection-stage-col {
+    min-height: auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .collection-backdrop-circle {
+    width: min(290px, 80vw) !important;
+    height: min(290px, 80vw) !important;
+  }
+
+  .collection-bottles-wrapper {
+    width: 100% !important;
+    max-width: 350px !important;
+    gap: 6px !important;
+    padding: 0.5rem 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    justify-content: center !important;
+  }
+
+  .collection-bottle-item {
+    flex: 0 0 calc((100% - 24px) / 5) !important;
+    max-width: 58px !important;
+    min-width: 0 !important;
+  }
+
+  .collection-bottle-img {
+    width: 100% !important;
+    max-width: 54px !important;
+    height: auto !important;
+  }
+
+  .collection-bottle-img-center {
+    max-height: 140px !important;
+    transform: translateY(-5px) !important;
+  }
+
+  .collection-bottle-img-mid {
+    max-height: 125px !important;
+  }
+
+  .collection-bottle-img-outer {
+    max-height: 112px !important;
+  }
+
+  .collection-shade-label {
+    font-size: 0.52rem !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.02em !important;
+    margin-top: 0.25rem !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    max-width: 58px !important;
+  }
+
+  .collection-details-col {
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .coll-price-badge {
+    margin: 0 auto 1.5rem auto !important;
+    max-width: 340px !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding: 0.9rem 1.15rem !important;
+  }
+
+  .coll-perks-list {
+    text-align: left !important;
+    max-width: 340px !important;
+    margin: 0 auto 1.75rem auto !important;
+    width: 100% !important;
+    gap: 0.65rem 0.5rem !important;
+  }
+
+  .coll-cta-reveal {
+    justify-content: center !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+    gap: 0.65rem !important;
+  }
+
+  .coll-cta-reveal > * {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;

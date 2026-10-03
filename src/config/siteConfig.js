@@ -229,7 +229,7 @@ export const JOURNEY_SUMMARY = {
 };
 
 export const COLLECTION_OFFER = {
-  title: "The Complete MESHE Healing Collection",
+  title: "The Complete MESHE Collection",
   subtitle: "Five shades. One healing journey.",
   description: "Experience the complete emotional journey. All 5 healing matte shades enriched with Shea Butter, Jojoba Oil & Vitamin E, curated in one collectible set.",
   price: 1596,
