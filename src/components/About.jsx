@@ -124,18 +124,25 @@ export default function About() {
                 borderRadius: '24px',
                 overflow: 'hidden',
                 boxShadow: '0 20px 45px rgba(107, 74, 64, 0.12)',
-                backgroundColor: 'var(--bg-secondary)',
+                backgroundColor: '#FFFFFF',
+                padding: 'clamp(1rem, 2vw, 1.75rem)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                border: '1px solid rgba(107, 74, 64, 0.12)',
               }}
             >
               <img
-                src="/images/editorial-model.jpg"
-                alt="MESHE Woman — Healing Beauty"
+                src="/images/meshe_brand_boxes.png"
+                alt="MESHE - Made for Every Smile Packaging"
                 style={{
                   width: '100%',
                   height: 'auto',
-                  maxHeight: '560px',
-                  objectFit: 'cover',
+                  maxHeight: '540px',
+                  objectFit: 'contain',
                   display: 'block',
+                  margin: '0 auto',
+                  filter: 'drop-shadow(0 15px 30px rgba(107, 74, 64, 0.14))',
                 }}
               />
             </div>

@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDownRight, Sparkles, ShieldCheck, Heart } from 'lucide-react';
-import { BRAND } from '../config/siteConfig';
+import { BRAND, PRODUCTS } from '../config/siteConfig';
 import gsap from 'gsap';
 
 export default function Hero({ onExploreShades, onExploreCollection }) {
+  const [activeShadeIndex, setActiveShadeIndex] = useState(1); // Default to Shade 02: Broken Beauty
+  const currentProduct = PRODUCTS[activeShadeIndex] || PRODUCTS[0];
+
   const heroRef = useRef(null);
   const headlineRef = useRef(null);
   const productRef = useRef(null);
@@ -318,26 +321,28 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
               }}
             >
               <img
-                src="/images/hero-lipstick.png"
-                alt="MESHE Healing Velvet Lipstick"
+                key={currentProduct.id}
+                src={currentProduct.image}
+                alt={`${currentProduct.name} - MESHE Healing Velvet Lipstick`}
                 style={{
                   height: 'auto',
-                  maxHeight: 'min(520px, 60vh)',
+                  maxHeight: 'min(500px, 58vh)',
                   maxWidth: '100%',
                   objectFit: 'contain',
                   display: 'block',
                   margin: '0 auto',
+                  transition: 'transform 0.3s ease',
                 }}
               />
             </div>
 
-            {/* 7. Healing-focused floating element (replacing luxury signature seal) */}
+            {/* Floating Price & Healing Touch Badge */}
             <div
               ref={badgeRef}
               className="pulse-badge"
               style={{
                 position: 'absolute',
-                top: '10%',
+                top: '8%',
                 right: '4%',
                 zIndex: 3,
                 backgroundColor: 'rgba(255, 255, 255, 0.94)',
@@ -393,42 +398,71 @@ export default function Hero({ onExploreShades, onExploreCollection }) {
               </span>
             </div>
 
-            {/* 7. Bottom Pill: Healing-focused message (soft, comforting) */}
+            {/* Interactive 5-Shade Switcher Bar */}
             <div
               style={{
                 position: 'absolute',
-                bottom: '2%',
+                bottom: '1%',
                 zIndex: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.94)',
-                backdropFilter: 'blur(10px)',
-                padding: '0.65rem 1.35rem',
+                backgroundColor: 'rgba(255, 255, 255, 0.96)',
+                backdropFilter: 'blur(12px)',
+                padding: '0.65rem 1.15rem',
                 borderRadius: '9999px',
-                border: '1px solid rgba(107, 74, 64, 0.12)',
-                boxShadow: '0 8px 24px rgba(107, 74, 64, 0.08)',
+                border: '1px solid rgba(107, 74, 64, 0.16)',
+                boxShadow: '0 10px 28px rgba(107, 74, 64, 0.1)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.7rem',
+                gap: '0.65rem',
+                maxWidth: '92%',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
               }}
             >
-              <span
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+                {PRODUCTS.map((prod, idx) => {
+                  const isSelected = activeShadeIndex === idx;
+                  return (
+                    <button
+                      key={prod.id}
+                      onClick={() => setActiveShadeIndex(idx)}
+                      title={`Shade ${prod.shadeNumber}: ${prod.name} (${prod.stage})`}
+                      aria-label={`Select Shade ${prod.shadeNumber} ${prod.name}`}
+                      style={{
+                        width: isSelected ? '24px' : '18px',
+                        height: isSelected ? '24px' : '18px',
+                        borderRadius: '50%',
+                        backgroundColor: prod.colorHex,
+                        border: isSelected ? '2.5px solid #FFFFFF' : '1px solid rgba(0,0,0,0.1)',
+                        boxShadow: isSelected ? `0 0 0 2px ${prod.colorHex}, 0 2px 8px rgba(0,0,0,0.2)` : 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.25s ease',
+                        padding: 0,
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              <div
                 style={{
-                  width: '10px',
-                  height: '10px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--pastel-rose)',
-                  display: 'inline-block',
+                  height: '14px',
+                  width: '1px',
+                  backgroundColor: 'rgba(107, 74, 64, 0.2)',
+                  margin: '0 0.2rem',
                 }}
               />
+
               <span
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.78rem',
-                  fontWeight: 500,
-                  color: 'var(--text-primary)',
+                  fontWeight: 600,
+                  color: 'var(--accent-brown)',
                   letterSpacing: '0.02em',
+                  whiteSpace: 'nowrap',
                 }}
               >
-                A Little Colour for Your Healing Journey
+                {currentProduct.shadeNumber} • {currentProduct.name}
               </span>
             </div>
 

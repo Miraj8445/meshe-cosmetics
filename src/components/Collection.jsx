@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { COLLECTION_OFFER, PRODUCTS, getWhatsAppOrderUrl } from '../config/siteConfig';
-import { Sparkles, CheckCircle2, Gift, Truck, ArrowRight } from 'lucide-react';
+import { Sparkles, CheckCircle2, Gift, Truck, ArrowRight, Eye } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Collection({ onGetCollection }) {
+  const [activeView, setActiveView] = useState('bottles'); // 'bottles' | 'boxes' | 'swatches'
   const containerRef = useRef(null);
   const pinSectionRef = useRef(null);
   const bottlesRef = useRef([]);
@@ -157,55 +158,192 @@ export default function Collection({ onGetCollection }) {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="collection-grid">
             {/* Left Column: Visual Assembly Stage of all 5 Lipsticks */}
-            <div className="collection-stage-col">
-              {/* Soft Circular Backdrop */}
-              <div className="collection-backdrop-circle" />
+            <div className="collection-stage-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              
+              {/* Main Stage Area */}
+              <div style={{ position: 'relative', width: '100%', minHeight: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {/* Soft Circular Backdrop */}
+                <div className="collection-backdrop-circle" />
 
-              {/* 5 Assembling Lipstick Bottles — Healing Order */}
-              <div className="collection-bottles-wrapper">
-                {PRODUCTS.map((prod, idx) => (
+                {/* View 1: 5 Assembling Lipstick Bottles — Healing Order */}
+                {activeView === 'bottles' && (
+                  <div className="collection-bottles-wrapper">
+                    {PRODUCTS.map((prod, idx) => (
+                      <div
+                        key={prod.id}
+                        ref={(el) => (bottlesRef.current[idx] = el)}
+                        className="collection-bottle-item"
+                      >
+                        <img
+                          src={prod.image}
+                          alt={prod.name}
+                          className={`collection-bottle-img ${
+                            idx === 2
+                              ? 'collection-bottle-img-center'
+                              : idx === 1 || idx === 3
+                              ? 'collection-bottle-img-mid'
+                              : 'collection-bottle-img-outer'
+                          }`}
+                        />
+
+                        {/* Miniature Shade Name under bottle */}
+                        <span className="collection-shade-label">
+                          {prod.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* View 2: Complete Box Packaging Set */}
+                {activeView === 'boxes' && (
                   <div
-                    key={prod.id}
-                    ref={(el) => (bottlesRef.current[idx] = el)}
-                    className="collection-bottle-item"
+                    style={{
+                      position: 'relative',
+                      zIndex: 2,
+                      width: '100%',
+                      maxWidth: '460px',
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '24px',
+                      padding: '1.25rem',
+                      boxShadow: '0 20px 45px rgba(0,0,0,0.15)',
+                      border: '1px solid rgba(232, 185, 165, 0.4)',
+                    }}
                   >
                     <img
-                      src={prod.image}
-                      alt={prod.name}
-                      className={`collection-bottle-img ${
-                        idx === 2
-                          ? 'collection-bottle-img-center'
-                          : idx === 1 || idx === 3
-                          ? 'collection-bottle-img-mid'
-                          : 'collection-bottle-img-outer'
-                      }`}
+                      src="/images/meshe_collection_boxes.png"
+                      alt="MESHE 5-Piece Complete Box Collection"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '340px',
+                        objectFit: 'contain',
+                        display: 'block',
+                        margin: '0 auto',
+                      }}
                     />
-
-                    {/* Miniature Shade Name under bottle */}
-                    <span className="collection-shade-label">
-                      {prod.name}
-                    </span>
+                    <div
+                      style={{
+                        marginTop: '0.85rem',
+                        textAlign: 'center',
+                        fontSize: '0.78rem',
+                        color: 'var(--accent-brown)',
+                        fontWeight: 600,
+                      }}
+                    >
+                      5 Keepsake Boxes • Hydra Moisturizing • 16-Hour Wear
+                    </div>
                   </div>
-                ))}
+                )}
+
+                {/* View 3: Daylight Arm Swatches */}
+                {activeView === 'swatches' && (
+                  <div
+                    style={{
+                      position: 'relative',
+                      zIndex: 2,
+                      width: '100%',
+                      maxWidth: '480px',
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '24px',
+                      overflow: 'hidden',
+                      boxShadow: '0 20px 45px rgba(0,0,0,0.15)',
+                      border: '1px solid rgba(232, 185, 165, 0.4)',
+                    }}
+                  >
+                    <img
+                      src="/images/meshe_arm_swatches.png"
+                      alt="MESHE 5 Healing Shades Arm Swatches"
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '340px',
+                        objectFit: 'cover',
+                        display: 'block',
+                      }}
+                    />
+                    <div
+                      style={{
+                        padding: '0.75rem 1rem',
+                        backgroundColor: '#FFF7F2',
+                        textAlign: 'center',
+                        fontSize: '0.78rem',
+                        color: 'var(--accent-brown)',
+                        fontWeight: 600,
+                      }}
+                    >
+                      Real Arm Swatches: Broken Beauty → Nevermine
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Box Packaging Glimpse */}
+              {/* View Switcher Pills */}
               <div
                 style={{
-                  position: 'absolute',
-                  top: '15%',
-                  right: '5%',
-                  zIndex: 1,
-                  opacity: 0.12,
-                  pointerEvents: 'none',
-                  filter: 'blur(2px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginTop: '1.5rem',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(10px)',
+                  padding: '0.35rem 0.5rem',
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  zIndex: 4,
                 }}
               >
-                <img
-                  src="/images/logo-light.png"
-                  alt="MESHE seal"
-                  style={{ width: '200px', height: '200px' }}
-                />
+                <button
+                  onClick={() => setActiveView('bottles')}
+                  style={{
+                    backgroundColor: activeView === 'bottles' ? 'var(--accent-brown)' : 'transparent',
+                    color: activeView === 'bottles' ? '#FFFFFF' : 'var(--text-primary)',
+                    border: 'none',
+                    borderRadius: '9999px',
+                    padding: '0.45rem 1rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.76rem',
+                    fontWeight: activeView === 'bottles' ? 600 : 500,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  5 Bottles
+                </button>
+                <button
+                  onClick={() => setActiveView('boxes')}
+                  style={{
+                    backgroundColor: activeView === 'boxes' ? 'var(--accent-brown)' : 'transparent',
+                    color: activeView === 'boxes' ? '#FFFFFF' : 'var(--text-primary)',
+                    border: 'none',
+                    borderRadius: '9999px',
+                    padding: '0.45rem 1rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.76rem',
+                    fontWeight: activeView === 'boxes' ? 600 : 500,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  Box Packaging
+                </button>
+                <button
+                  onClick={() => setActiveView('swatches')}
+                  style={{
+                    backgroundColor: activeView === 'swatches' ? 'var(--accent-brown)' : 'transparent',
+                    color: activeView === 'swatches' ? '#FFFFFF' : 'var(--text-primary)',
+                    border: 'none',
+                    borderRadius: '9999px',
+                    padding: '0.45rem 1rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.76rem',
+                    fontWeight: activeView === 'swatches' ? 600 : 500,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  Arm Swatches
+                </button>
               </div>
 
             </div>

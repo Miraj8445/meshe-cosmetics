@@ -239,6 +239,92 @@ export default function WhyMeshe() {
                   >
                     {item.description}
                   </p>
+
+                  {/* Authentic Visual Enhancement for Pillar 02: Real Arm Swatches */}
+                  {item.number === '02' && (
+                    <div
+                      style={{
+                        marginTop: '1.5rem',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid rgba(107, 74, 64, 0.12)',
+                        boxShadow: '0 8px 24px rgba(107, 74, 64, 0.08)',
+                        backgroundColor: '#FFFFFF',
+                      }}
+                    >
+                      <img
+                        src="/images/meshe_arm_swatches.png"
+                        alt="MESHE 5 Healing Shades Arm Swatches"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          maxHeight: '320px',
+                          objectFit: 'cover',
+                          display: 'block',
+                        }}
+                      />
+                      <div
+                        style={{
+                          padding: '0.75rem 1rem',
+                          backgroundColor: '#FFF7F2',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          borderTop: '1px solid rgba(107, 74, 64, 0.08)',
+                          fontSize: '0.78rem',
+                          color: 'var(--accent-brown)',
+                          fontWeight: 500,
+                        }}
+                      >
+                        <span>Real Daylight Swatches: Broken Beauty → Nevermine</span>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>100% Unfiltered</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Authentic Visual Enhancement for Pillar 03: Packaging & Formula Claims */}
+                  {item.number === '03' && (
+                    <div
+                      style={{
+                        marginTop: '1.5rem',
+                        borderRadius: '16px',
+                        overflow: 'hidden',
+                        border: '1px solid rgba(107, 74, 64, 0.12)',
+                        boxShadow: '0 8px 24px rgba(107, 74, 64, 0.08)',
+                        backgroundColor: '#FFFFFF',
+                      }}
+                    >
+                      <img
+                        src="/images/meshe_collection_boxes.png"
+                        alt="MESHE Hydra-Moisturizing & Formula Claims"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          maxHeight: '320px',
+                          objectFit: 'contain',
+                          display: 'block',
+                          margin: '0 auto',
+                          padding: '0.75rem',
+                        }}
+                      />
+                      <div
+                        style={{
+                          padding: '0.75rem 1rem',
+                          backgroundColor: '#FFF7F2',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          borderTop: '1px solid rgba(107, 74, 64, 0.08)',
+                          fontSize: '0.78rem',
+                          color: 'var(--accent-brown)',
+                          fontWeight: 500,
+                        }}
+                      >
+                        <span>Hydra Moisturizing • Non Transfer • Cruelty Free • 16-Hour Wear</span>
+                        <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Official Packaging</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PRODUCTS, SHADE_STORIES, JOURNEY_SUMMARY, getWhatsAppOrderUrl } from '../config/siteConfig';
-import { ArrowUpRight, Plus, Check } from 'lucide-react';
+import { ArrowUpRight, Plus, Check, Sparkles } from 'lucide-react';
 
 export default function Shades({ onAddToCart, onQuickOrder }) {
   const [activeShadeId, setActiveShadeId] = useState(PRODUCTS[0].id);
@@ -382,6 +382,63 @@ export default function Shades({ onAddToCart, onQuickOrder }) {
             })}
           </div>
 
+          {/* Authentic Real Daylight Swatches Reference */}
+          <div
+            style={{
+              maxWidth: '880px',
+              margin: '0 auto 3.5rem',
+              backgroundColor: '#FFFFFF',
+              borderRadius: '24px',
+              overflow: 'hidden',
+              border: '1px solid rgba(107, 74, 64, 0.14)',
+              boxShadow: '0 12px 35px rgba(107, 74, 64, 0.08)',
+            }}
+          >
+            <div
+              style={{
+                padding: '0.9rem 1.4rem',
+                backgroundColor: '#FFF7F2',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                borderBottom: '1px solid rgba(107, 74, 64, 0.08)',
+                flexWrap: 'wrap',
+                gap: '0.5rem',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <Sparkles size={16} color="var(--accent-brown)" />
+                <span
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    color: 'var(--accent-brown)',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  Real Daylight Swatches on Skin
+                </span>
+              </div>
+              <span style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', fontWeight: 500 }}>
+                Broken Beauty • After Love • Pink Lies • Lost Love • Nevermine
+              </span>
+            </div>
+
+            <img
+              src="/images/meshe_arm_swatches.png"
+              alt="MESHE 5 Healing Shades Arm Swatches"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '360px',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
+
           {/* 5 Product Cards Grid — RESPONSIVE & COMPLETE IMAGES */}
           <div
             style={{
@@ -439,7 +496,7 @@ export default function Shades({ onAddToCart, onQuickOrder }) {
                           fontWeight: 600,
                         }}
                       >
-                        0{product.shadeNumber}
+                        {product.shadeNumber}
                       </span>
 
                       <span
@@ -730,6 +787,17 @@ export default function Shades({ onAddToCart, onQuickOrder }) {
           }
           .shades-grid {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
+          }
+          .product-bottle-img {
+            max-height: 200px !important;
+            max-width: 120px !important;
+          }
+          .product-image-stage {
+            padding: 0.75rem 0 !important;
+          }
+          .editorial-product-card {
+            padding: 1.25rem !important;
           }
         }
       `}</style>
