@@ -472,7 +472,7 @@ export default function Contact() {
                   style={{ width: '100%', padding: '1rem', fontSize: '0.95rem' }}
                 >
                   <InstagramIcon size={18} color="#FFFFFF" />
-                  <span>DM on Instagram @meshe.beauty</span>
+                  <span>DM on Instagram {BRAND.instagramHandle}</span>
                 </a>
               </div>
             )}
